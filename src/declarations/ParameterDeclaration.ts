@@ -9,7 +9,19 @@ import { TypedDeclaration } from './Declaration';
  * @implements {TypedDeclaration}
  */
 export class ParameterDeclaration implements TypedDeclaration {
-    constructor(public name: string, public type: string | undefined, public start?: number, public end?: number) { }
+    public get type(): string | undefined {
+        return this._type;
+    }
+    public set type(value: string | undefined) {
+        this._type = value;
+    }
+    public get name(): string {
+        return this._name;
+    }
+    public set name(value: string) {
+        this._name = value;
+    }
+    constructor(private _name: string, private _type: string | undefined, public start?: number, public end?: number) { }
 }
 
 export class BoundParameterDeclaration extends ParameterDeclaration {

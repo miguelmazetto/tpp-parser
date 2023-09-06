@@ -50,8 +50,7 @@ export function getNodeType(node: TypeNode | undefined): string | undefined {
  * @returns {boolean}
  */
 export function containsModifier(node: Node, modifierKind: SyntaxKind): boolean {
-    if (!node.modifiers) return false;
-    return node.modifiers.some(mod => mod.kind === modifierKind);
+    return node.kind === modifierKind;
 }
 
 /**
@@ -62,21 +61,15 @@ export function containsModifier(node: Node, modifierKind: SyntaxKind): boolean 
  * @returns {(DeclarationVisibility | undefined)}
  */
 export function getNodeVisibility(node: Node): DeclarationVisibility | undefined {
-    if (!node.modifiers) {
-        return undefined;
-    }
-
-    for (const modifier of node.modifiers) {
-        switch (modifier.kind) {
-            case SyntaxKind.PublicKeyword:
-                return DeclarationVisibility.Public;
-            case SyntaxKind.ProtectedKeyword:
-                return DeclarationVisibility.Protected;
-            case SyntaxKind.PrivateKeyword:
-                return DeclarationVisibility.Private;
-            default:
-                break;
-        }
+    switch (node.kind) {
+        case SyntaxKind.PublicKeyword:
+            return DeclarationVisibility.Public;
+        case SyntaxKind.ProtectedKeyword:
+            return DeclarationVisibility.Protected;
+        case SyntaxKind.PrivateKeyword:
+            return DeclarationVisibility.Private;
+        default:
+            return undefined;
     }
 }
 

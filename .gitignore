@@ -9,3 +9,7 @@ coverage/
 
 # typescript
 build/
+
+# other
+/pnpm-lock.yaml
+/.vscode/
