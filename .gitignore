@@ -8,7 +8,7 @@ node_modules/
 coverage/
 
 # typescript
-build/
+dist/
 
 # other
 /pnpm-lock.yaml
